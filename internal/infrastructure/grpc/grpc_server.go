@@ -5,7 +5,7 @@ import (
 	"log"
 	"net"
 
-	grpcLib "google.golang.org/grpc"
+	grpc "google.golang.org/grpc"
 
 	pb "github.com/nuhmanudheent/go-microservices/api/grpc/protos" // Import the generated protobuf code
 	localGrpc "github.com/nuhmanudheent/go-microservices/internal/interfaces/grpc"
@@ -17,9 +17,9 @@ func StartGRPCServer() {
 	if err != nil {
 		log.Fatalf("failed to listen: %v", err)
 	}
-	s := grpcLib.NewServer() // Use the grpcLib alias for the gRPC server
+	s := grpc.NewServer()
 	userUseCase := usecase.NewUserUseCase()
-	userHandler := localGrpc.NewUserHandler(userUseCase) // Use the localGrpc alias for your local package
+	userHandler := localGrpc.NewUserHandler(userUseCase)
 	pb.RegisterUserServiceServer(s, userHandler)
 
 	log.Printf("gRPC server listening on port 50051")

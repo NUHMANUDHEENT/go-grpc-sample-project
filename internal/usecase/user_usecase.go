@@ -5,6 +5,7 @@ import "github.com/nuhmanudheent/go-microservices/internal/entity"
 
 type UserUseCase interface {
 	GetUser(id string) (*entity.User, error)
+	
 }
 
 type userUseCase struct{}
